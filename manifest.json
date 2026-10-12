@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "넷플릭스 한일 듀얼 자막 (후리가나 지원)",
+  "version": "1.0.0",
+  "description": "넷플릭스 일본 영상 시청 시 한자 위에 히라가나(후리가나) 독음과 한국어 번역 자막을 동시에 띄워주는 학습용 확장프로그램",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Netflix 한일 듀얼 자막 설정"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*.netflix.com/*",
+    "https://translate.googleapis.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.netflix.com/*"],
+      "js": [
+        "lib/kanji_dict.js",
+        "lib/furigana.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

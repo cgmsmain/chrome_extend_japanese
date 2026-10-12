@@ -1,0 +1,108 @@
+/**
+ * Netflix Dual Subtitles - Overlay Styles
+ */
+
+/* Hide Netflix native subtitle container only when our dual subtitles are active */
+body.nds-active .player-timedtext {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Main Dual Subtitles Overlay Container */
+#netflix-dual-subs-overlay {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  pointer-events: none;
+  text-align: center;
+  max-width: 88%;
+  user-select: none;
+  transition: opacity 0.1s ease, bottom 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fullscreen mode adjustment */
+:fullscreen #netflix-dual-subs-overlay,
+:-webkit-full-screen #netflix-dual-subs-overlay {
+  bottom: 9%;
+}
+
+/* Controls active / seeking state: slightly raise subtitles to avoid overlapping seekbar */
+.watch-video--player-controls-active #netflix-dual-subs-overlay,
+.active-player-controls #netflix-dual-subs-overlay {
+  bottom: 15% !important;
+}
+
+/* Subtitle Content Box */
+.nds-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.95),
+               -2px -2px 3px rgba(0, 0, 0, 0.95),
+               2px -2px 3px rgba(0, 0, 0, 0.95),
+               -2px 2px 3px rgba(0, 0, 0, 0.95),
+               0px 2px 5px rgba(0, 0, 0, 0.9);
+  transition: background-color 0.15s ease, font-size 0.1s ease;
+}
+
+/* Japanese Subtitle Line */
+.nds-line-ja {
+  font-family: 'Netflix Sans', 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  display: inline-block;
+}
+
+/* Ruby and Rt tags for Kanji Furigana */
+.nds-line-ja ruby {
+  ruby-align: center;
+  ruby-position: over;
+  margin: 0 1px;
+}
+
+.nds-line-ja rt {
+  font-size: var(--nds-furigana-ratio, 0.55em);
+  line-height: 1;
+  font-weight: 500;
+  color: var(--nds-furigana-color, #ffea00);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.95),
+               -1px -1px 2px rgba(0, 0, 0, 0.95),
+               1px -1px 2px rgba(0, 0, 0, 0.95),
+               -1px 1px 2px rgba(0, 0, 0, 0.95);
+  user-select: none;
+}
+
+/* Korean Subtitle Line */
+.nds-line-ko {
+  font-family: 'Netflix Sans', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  line-height: 1.35;
+  color: var(--nds-text-color, #ffffff);
+  white-space: pre-wrap;
+  word-break: keep-all;
+  display: inline-block;
+  opacity: 0.95;
+}
+
+/* Spacing between lines depending on position */
+.nds-sub-top {
+  margin-bottom: 6px;
+}
+
+.nds-sub-bottom {
+  margin-top: 2px;
+}

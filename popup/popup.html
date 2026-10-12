@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix 한일 듀얼 자막</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <span class="logo-n">N</span>
+        <span class="title">한일 듀얼 자막</span>
+      </div>
+      <span class="badge" id="statusBadge">ON</span>
+    </header>
+
+    <!-- Main Toggle Section -->
+    <section class="section main-toggle-section">
+      <div class="toggle-row">
+        <div class="label-group">
+          <span class="label-title">듀얼 자막 사용</span>
+          <span class="label-desc">일본어 자막 감지 시 한국어 동시 출력</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="enabled">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Furigana Toggle Section -->
+    <section class="section">
+      <div class="toggle-row">
+        <div class="label-group">
+          <span class="label-title">한자 위 히라가나 (후리가나)</span>
+          <span class="label-desc">한자 상단에 독음(루비) 표시</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="showFurigana">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Position Select -->
+    <section class="section">
+      <div class="control-row">
+        <label for="subPosition" class="control-label">자막 배치 순서</label>
+        <select id="subPosition" class="select-box">
+          <option value="ja-top">일본어 상단 / 한국어 하단</option>
+          <option value="ko-top">한국어 상단 / 일본어 하단</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Size Sliders -->
+    <section class="section">
+      <div class="slider-control">
+        <div class="slider-header">
+          <span>기본 글자 크기</span>
+          <span class="slider-val" id="fontSizeVal">22px</span>
+        </div>
+        <input type="range" id="fontSize" min="16" max="36" step="1" value="22">
+      </div>
+
+      <div class="slider-control">
+        <div class="slider-header">
+          <span>후리가나 크기 비율</span>
+          <span class="slider-val" id="furiganaRatioVal">55%</span>
+        </div>
+        <input type="range" id="furiganaRatio" min="40" max="75" step="5" value="55">
+      </div>
+    </section>
+
+    <!-- Color & Style Controls -->
+    <section class="section">
+      <div class="color-row">
+        <div class="color-item">
+          <label for="textColor">자막 색상</label>
+          <input type="color" id="textColor" value="#ffffff">
+        </div>
+        <div class="color-item">
+          <label for="furiganaColor">후리가나 색상</label>
+          <input type="color" id="furiganaColor" value="#ffea00">
+        </div>
+      </div>
+
+      <div class="slider-control">
+        <div class="slider-header">
+          <span>배경 박스 불투명도</span>
+          <span class="slider-val" id="bgOpacityVal">65%</span>
+        </div>
+        <input type="range" id="bgOpacity" min="0" max="100" step="5" value="65">
+      </div>
+    </section>
+
+    <!-- Live Preview Box -->
+    <section class="section preview-section">
+      <div class="preview-title">미리보기 (Preview)</div>
+      <div class="preview-box-wrapper">
+        <div class="preview-sub-box" id="previewBox">
+          <div id="previewJa" class="preview-line-ja">
+            <ruby>今日<rt>きょう</rt></ruby>もいい<ruby>天気<rt>てんき</rt></ruby>ですね。
+          </div>
+          <div id="previewKo" class="preview-line-ko">
+            오늘도 좋은 날씨네요.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guide & Footer -->
+    <footer class="footer">
+      <p class="tip">💡 넷플릭스 자막 메뉴에서 <strong>'일본어'</strong> 자막을 선택하면 자동으로 작동합니다.</p>
+      <button id="resetBtn" class="reset-btn">기본값 복원</button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
